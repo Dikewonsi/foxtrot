@@ -13,6 +13,7 @@
         use HasApiTokens, HasFactory, Notifiable;
 
         protected $fillable = [
+            'userid',
             'f_name',
             'l_name',
             'email',
@@ -23,7 +24,6 @@
             'crypto_wallet',
             'traded_before',
             'highest_investment',
-            'userid', // add this
         ];
 
         protected static function booted()

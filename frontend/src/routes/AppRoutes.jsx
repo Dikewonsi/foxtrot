@@ -10,7 +10,7 @@ import AccountPage from "../pages/Account";
 import LoginPage from "../pages/Login";
 import CopyTradingPage from "../pages/CopyTrading";
 import StockPage from "../pages/Stocks";
-import RegisterPage from "../pages/register";
+import RegisterPage from "../pages/Register";
 
 export default function AppRoutes() {
   return (

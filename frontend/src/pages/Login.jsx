@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import ThemeToggle from "../components/ThemeToggle";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 
@@ -11,6 +13,8 @@ import ThemeToggle from "../components/ThemeToggle";
 // <img> and <a> tags accordingly.
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -31,12 +35,32 @@ export default function LoginPage() {
 
     try {
       setLoading(true);
-      // Simulate network request. Replace with your auth call.
-      await new Promise((r) => setTimeout(r, 800));
-      // TODO: call your signin API here
-      alert("Logged in (demo). Replace with real auth.");
-    } catch {
-      setError("Login failed. Try again.");
+
+      const res = await fetch("http://127.0.0.1:8001/api/login", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        toast.success(`Welcome back, ${data.user.f_name}! 🎉`);
+        navigate("/");
+      } else {
+        const error = await res.json();
+        toast.error(error.message || "Invalid credentials");
+      }
+    } catch (err) {
+      toast.error("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
@@ -47,7 +71,6 @@ export default function LoginPage() {
       {/* Background layers */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.img
-          src={"https://images.unsplash.com/photo-1522202195463-0a0e06a6d2d8?auto=format&fit=crop&w=1400&q=60"}
           alt="bg"
           className="w-full h-full object-cover opacity-40 dark:opacity-20"
           initial={{ scale: 1.15 }}
