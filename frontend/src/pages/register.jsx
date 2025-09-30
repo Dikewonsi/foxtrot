@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Lock, Eye, EyeOff, Phone } from "lucide-react";
 import ThemeToggle from "../components/ThemeToggle";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 /**
  * Multi-step RegisterPage
@@ -183,11 +184,14 @@ export default function RegisterPage() {
 
     if (res.ok) {
       const data = await res.json();
-      // store token in localStorage or cookie
       localStorage.setItem("authToken", data.token);
-      alert("Account created successfully!");
-      navigate("/login"); // redirect to login
+
+      toast.success("🎉 Account created successfully!");
+      navigate("/login");
       return data;
+    } else {
+      const error = await res.json();
+      toast.error(error.message || "Something went wrong!");
     }
 
     if (res.status === 422) {
