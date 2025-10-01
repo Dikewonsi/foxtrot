@@ -102,14 +102,14 @@ export default function SidebarAnimated() {
                 className="mt-2 ml-6 border-l border-gray-100 dark:border-gray-800 pl-3 flex flex-col gap-2"
               >
                 <motion.div whileHover={{ x: 6 }}>
-                  <Link to="/chart?pair=BTC%2FUSDT" className={navItemClass(currentPath === "/chart?pair=BTC%2FUSDT")}>
+                  <Link to="/trade/crypto?pair=BTC%2FUSDT" className={navItemClass(currentPath === "/chart?pair=BTC%2FUSDT")}>
                     <Activity className="w-4 h-4" />
                     <span className="text-sm">Crypto trading</span>
                   </Link>
                 </motion.div>
 
                 <motion.div whileHover={{ x: 6 }}>
-                  <Link to="/stock" className={navItemClass(currentPath === "/stock")}>
+                  <Link to="/trade/stocks" className={navItemClass(currentPath === "/stock")}>
                     <BarChart2 className="w-4 h-4" />
                     <span className="text-sm">Stocks trading</span>
                   </Link>

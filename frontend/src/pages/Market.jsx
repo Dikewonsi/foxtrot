@@ -287,7 +287,7 @@ export default function Market() {
                           {/* compact buy/sell mini cards (no absolute elements) */}
                           <div className="flex gap-2 items-center">
                             <Link
-                              to={`/chart?pair=${encodeURIComponent(symbol)}`}
+                              to={`/trade/crypto?pair=${encodeURIComponent(symbol)}`}
                               className="flex-shrink-0"
                             >
                               <div className="flex items-center gap-2 rounded-lg overflow-hidden">

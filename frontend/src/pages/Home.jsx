@@ -70,7 +70,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Link to="/deposit" className="px-4 py-2 rounded-full bg-white text-secondary font-medium text-sm">Deposit</Link>
+                <Link to="/deposit" className="px-4 py-2 rounded-full bg-white text-black font-medium text-sm">Deposit</Link>
                 <Link to="/market" className="px-4 py-2 rounded-full bg-white/10  font-medium text-sm">Trade</Link>
               </div>
             </div>
@@ -101,9 +101,11 @@ export default function HomePage() {
               <div className="text-sm text-secondary font-medium">Premium</div>
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="mt-4 grid grid-cols-2 gap-2 md:gap-4">
               <button className="py-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-sm">Transactions</button>
               <button className="py-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-sm">Account</button>
+              <button className="py-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-sm hidden md:block">Account</button>
+              <button className="py-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-sm hidden md:block">Account</button>
             </div>
           </motion.div>
         </motion.section>

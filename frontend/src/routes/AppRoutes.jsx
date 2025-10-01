@@ -18,7 +18,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout> <Home /> </Layout>} />     
       <Route path="/market" element={<Layout> <Market/> </Layout>} />
-      <Route path="/chart" element={<Layout><Chart /></Layout>} />
+      <Route path="/trade/crypto" element={<Layout><Chart /></Layout>} />
       <Route path="/message" element={<Layout><Messages/></Layout>} />
       <Route path="/deposit" element={<Layout><DepositPage/></Layout>} />
       <Route path="/withdraw" element={<Layout><WithdrawPage/></Layout>} />
@@ -27,7 +27,7 @@ export default function AppRoutes() {
       <Route path="/register" element={<Layout> <RegisterPage/> </Layout>} />
       <Route path="/notifications" element={<Layout> <NotificationsPage/> </Layout>} />
       <Route path="/copy-trading" element={<Layout> <CopyTradingPage/> </Layout>} />
-      <Route path="/stock" element={<Layout> <StockPage/> </Layout>} />
+      <Route path="/trade/stocks" element={<Layout> <StockPage/> </Layout>} />
     </Routes>
   );
 }
