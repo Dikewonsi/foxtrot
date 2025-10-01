@@ -36,6 +36,9 @@ export default function BottomNavbar() {
   const [rightOpen, setRightOpen] = useState(false);
   const rightRef = useRef(null);
 
+  const [activitiesOpen, setActivitiesOpen] = useState(false);
+  const activitiesRef = useRef(null);
+
   // close when clicking outside either panel
   useEffect(() => {
     function onDoc(e) {
@@ -52,15 +55,24 @@ export default function BottomNavbar() {
       } else {
         if (rightOpen && !e.target.closest("#right-fab")) setRightOpen(false);
       }
+
+      if (activitiesRef.current && activitiesRef.current.contains(e.target)) {
+        // inside activities -> do nothing
+      } else {
+        if (activitiesOpen && !e.target.closest("#activities-fab")) {
+          setActivitiesOpen(false);
+        }
+      }
     }
     document.addEventListener("pointerdown", onDoc);
     return () => document.removeEventListener("pointerdown", onDoc);
-  }, [centerOpen, rightOpen]);
+  }, [centerOpen, rightOpen, activitiesOpen]);
 
   // close panels when route changes
   useEffect(() => {
     setCenterOpen(false);
     setRightOpen(false);
+    setActivitiesOpen(false);
   }, [currentPath]);
 
   const navBtn = (icon, label, active) => (
@@ -162,6 +174,7 @@ export default function BottomNavbar() {
               className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center space-y-3"
               style={{ pointerEvents: centerOpen ? "auto" : "none" }}
             >
+              {/* Crypto Trading */}
               <motion.div
                 variants={itemVariants}
                 initial="hidden"
@@ -170,7 +183,10 @@ export default function BottomNavbar() {
                 custom={0}
                 className="w-56 max-w-[86vw]"
               >
-                <Link to="/trade/crypto?pair=BTC%2FUSDT" onClick={() => setCenterOpen(false)}>
+                <Link
+                  to="/trade/crypto?pair=BTC%2FUSDT"
+                  onClick={() => setCenterOpen(false)}
+                >
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
                     <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-yellow-200 to-yellow-400">
                       <Activity className="w-5 h-5" />
@@ -186,6 +202,7 @@ export default function BottomNavbar() {
                 </Link>
               </motion.div>
 
+              {/* Stocks Trading */}
               <motion.div
                 variants={itemVariants}
                 initial="hidden"
@@ -210,6 +227,7 @@ export default function BottomNavbar() {
                 </Link>
               </motion.div>
 
+              {/* Commodities */}
               <motion.div
                 variants={itemVariants}
                 initial="hidden"
@@ -236,26 +254,175 @@ export default function BottomNavbar() {
                   </div>
                 </Link>
               </motion.div>
+
+              {/* Trading Signals */}
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                custom={3}
+                className="w-56 max-w-[86vw]"
+              >
+                <Link
+                  to="/trading-signals"
+                  onClick={() => setCenterOpen(false)}
+                >
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-purple-200 to-purple-400">
+                      <Zap className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Trading Signals</div>
+                      <div className="text-xs text-gray-400">
+                        Buy/sell alerts
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* Trading Bots */}
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                custom={4}
+                className="w-56 max-w-[86vw]"
+              >
+                <Link to="/trading-bots" onClick={() => setCenterOpen(false)}>
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-green-200 to-green-400">
+                      <Activity className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Trading Bots</div>
+                      <div className="text-xs text-gray-400">
+                        Automated strategies
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Messages */}
-      <Link
-        to="/message"
-        className="flex flex-col items-center"
-        onClick={() => {
-          setCenterOpen(false);
-          setRightOpen(false);
-        }}
-      >
-        {navBtn(
-          <MessageSquare className="w-5 h-5" />,
-          "Messages",
-          currentPath === "/message"
-        )}
-      </Link>
+      {/* ACTIVITIES FAB */}
+      <div className="relative flex items-center justify-center -mt-3">
+        <button
+          id="activities-fab"
+          onClick={() => {
+            setActivitiesOpen((s) => !s);
+            // close others
+            setCenterOpen(false);
+            setRightOpen(false);
+          }}
+          aria-expanded={activitiesOpen}
+          aria-controls="activities-panel"
+          className="group relative p-3 rounded-full shadow-2xl bg-white dark:bg-primary flex items-center justify-center focus:outline-none"
+          title="Activities"
+        >
+          <motion.div whileTap={{ scale: 0.94 }} whileHover={{ rotate: -6 }}>
+            <Activity className="w-5 h-5 text-[var(--color-secondary)]" />
+          </motion.div>
+        </button>
+
+        <AnimatePresence>
+          {activitiesOpen && (
+            <motion.div
+              id="activities-panel"
+              ref={activitiesRef}
+              initial={{ y: 18, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 18, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 320, damping: 28 }}
+              className="absolute bottom-20 right-1/2 translate-x-1/2 z-50 flex flex-col items-center space-y-3"
+              style={{ pointerEvents: activitiesOpen ? "auto" : "none" }}
+            >
+              {/* Account Trading */}
+              <motion.div
+                variants={itemVariants}
+                custom={0}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                className="w-56 max-w-[86vw]"
+              >
+                <Link
+                  to="/account-trading"
+                  onClick={() => setActivitiesOpen(false)}
+                >
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-indigo-200 to-indigo-400">
+                      <CreditCard className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Account Trading</div>
+                      <div className="text-xs text-gray-400">Manage trades</div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* Withdraw */}
+              <motion.div
+                variants={itemVariants}
+                custom={1}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                className="w-56 max-w-[86vw]"
+              >
+                <Link to="/withdraw" onClick={() => setActivitiesOpen(false)}>
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-green-200 to-green-400">
+                      <CreditCard className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Withdraw</div>
+                      <div className="text-xs text-gray-400">
+                        Funds transfer
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* History */}
+              <motion.div
+                variants={itemVariants}
+                custom={2}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                className="w-56 max-w-[86vw]"
+              >
+                <Link to="/history" onClick={() => setActivitiesOpen(false)}>
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-yellow-200 to-yellow-400">
+                      <BarChart2 className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">History</div>
+                      <div className="text-xs text-gray-400">
+                        Past transactions
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* RIGHT FAB — replaces profile link and opens Copy Trading / Signals / Bots */}
       <div className="relative flex items-center justify-center -mt-3">
