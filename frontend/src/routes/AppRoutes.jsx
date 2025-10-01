@@ -10,7 +10,8 @@ import AccountPage from "../pages/Account";
 import LoginPage from "../pages/Login";
 import CopyTradingPage from "../pages/CopyTrading";
 import StockPage from "../pages/Stocks";
-import RegisterPage from "../pages/Register";
+import RegisterPage from "../pages/Register"
+import NotificationsPage from "../pages/Notifications";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
       <Route path="/account" element={<Layout> <AccountPage/> </Layout>} />
       <Route path="/login" element={<Layout> <LoginPage/> </Layout>} />
       <Route path="/register" element={<Layout> <RegisterPage/> </Layout>} />
+      <Route path="/notifications" element={<Layout> <NotificationsPage/> </Layout>} />
       <Route path="/copy-trading" element={<Layout> <CopyTradingPage/> </Layout>} />
       <Route path="/stock" element={<Layout> <StockPage/> </Layout>} />
     </Routes>
