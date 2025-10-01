@@ -70,33 +70,6 @@ export default function SidebarAnimated() {
           </Link>
         </motion.div>
 
-        <motion.div variants={item} whileHover="hover">
-          <Link to="/market" className={navItemClass(currentPath === "/market")}>
-            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
-              <BarChart2 className="w-4 h-4" />
-            </div>
-            <span>Market</span>
-          </Link>
-        </motion.div>
-
-        <motion.div variants={item} whileHover="hover">
-          <Link to="/deposit" className={navItemClass(currentPath === "/deposit")}>
-            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
-              <ArrowDownCircle className="w-4 h-4" />
-            </div>
-            <span>Deposit</span>
-          </Link>
-        </motion.div>
-
-        <motion.div variants={item} whileHover="hover">
-          <Link to="/withdraw" className={navItemClass(currentPath === "/withdraw")}>
-            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
-              <ArrowUpCircle className="w-4 h-4" />
-            </div>
-            <span>Withdrawal</span> 
-          </Link>
-        </motion.div>
-
         {/* Trade dropdown */}
         <motion.div variants={item} whileHover="hover">
           <div className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-colors ${currentPath.startsWith("/trade") || openTrade ? "bg-gray-100 dark:bg-black/20 text-[color:var(--color-secondary)]" : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-black/10"}`}>
@@ -207,6 +180,33 @@ export default function SidebarAnimated() {
               </motion.div>
             )}
           </AnimatePresence>
+        </motion.div>
+
+        <motion.div variants={item} whileHover="hover">
+          <Link to="/market" className={navItemClass(currentPath === "/market")}>
+            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
+              <BarChart2 className="w-4 h-4" />
+            </div>
+            <span>Market</span>
+          </Link>
+        </motion.div>
+
+        <motion.div variants={item} whileHover="hover">
+          <Link to="/deposit" className={navItemClass(currentPath === "/deposit")}>
+            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
+              <ArrowDownCircle className="w-4 h-4" />
+            </div>
+            <span>Deposit</span>
+          </Link>
+        </motion.div>
+
+        <motion.div variants={item} whileHover="hover">
+          <Link to="/withdraw" className={navItemClass(currentPath === "/withdraw")}>
+            <div className="w-8 h-8 grid place-items-center rounded-md bg-white/90 dark:bg-black/20 shadow-sm">
+              <ArrowUpCircle className="w-4 h-4" />
+            </div>
+            <span>Withdrawal</span> 
+          </Link>
         </motion.div>
 
         {/* Chat & Account */}

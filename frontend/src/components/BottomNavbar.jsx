@@ -170,7 +170,7 @@ export default function BottomNavbar() {
                 custom={0}
                 className="w-56 max-w-[86vw]"
               >
-                <Link to="/crypto-trade" onClick={() => setCenterOpen(false)}>
+                <Link to="/trade/crypto" onClick={() => setCenterOpen(false)}>
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
                     <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-yellow-200 to-yellow-400">
                       <Activity className="w-5 h-5" />
