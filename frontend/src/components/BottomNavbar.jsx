@@ -14,6 +14,9 @@ import {
   ChevronRight,
   MoreVertical,
   MoreHorizontal,
+  Wallet,
+  ArrowUpCircle,
+  BookOpen,
 } from "lucide-react";
 
 /**
@@ -147,7 +150,7 @@ export default function BottomNavbar() {
           title="Trading tools"
         >
           <motion.div whileTap={{ scale: 0.94 }} whileHover={{ rotate: -6 }}>
-            <CreditCard className="w-5 h-5 text-black" />
+            <Activity className="w-5 h-5 text-black" />
           </motion.div>
 
           <motion.span
@@ -328,7 +331,7 @@ export default function BottomNavbar() {
           title="Activities"
         >
           <motion.div whileTap={{ scale: 0.94 }} whileHover={{ rotate: -6 }}>
-            <Activity className="w-5 h-5 text-[var(--color-secondary)]" />
+            <CreditCard className="w-5 h-5 text-[var(--color-secondary)]" />
           </motion.div>
         </button>
 
@@ -456,7 +459,7 @@ export default function BottomNavbar() {
               className="absolute bottom-20 right-4 z-50 flex flex-col items-end space-y-3"
               style={{ pointerEvents: rightOpen ? "auto" : "none" }}
             >
-              {/* Copy Trading */}
+              {/* Buy Crypto */}
               <motion.div
                 variants={itemVariants}
                 custom={0}
@@ -465,15 +468,15 @@ export default function BottomNavbar() {
                 exit="exit"
                 className="w-56 max-w-[86vw]"
               >
-                <Link to="/copy-trading" onClick={() => setRightOpen(false)}>
+                <Link to="/deposit" onClick={() => setRightOpen(false)}>
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
-                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-indigo-100 to-indigo-300">
-                      <Users className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-blue-100 to-blue-300">
+                      <Wallet className="w-5 h-5" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="font-medium">Copy Trading</div>
+                      <div className="font-medium">Buy Crypto</div>
                       <div className="text-xs text-gray-400">
-                        Follow pro traders
+                        Purchase instantly
                       </div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -481,7 +484,7 @@ export default function BottomNavbar() {
                 </Link>
               </motion.div>
 
-              {/* Trading Signals */}
+              {/* Upgrade */}
               <motion.div
                 variants={itemVariants}
                 custom={1}
@@ -490,15 +493,15 @@ export default function BottomNavbar() {
                 exit="exit"
                 className="w-56 max-w-[86vw]"
               >
-                <Link to="/trading-signals" onClick={() => setRightOpen(false)}>
+                <Link to="/upgrade" onClick={() => setRightOpen(false)}>
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
-                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-pink-100 to-pink-300">
-                      <Zap className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-purple-100 to-purple-300">
+                      <ArrowUpCircle className="w-5 h-5" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="font-medium">Trading Signals</div>
+                      <div className="font-medium">Upgrade</div>
                       <div className="text-xs text-gray-400">
-                        Buy/sell alerts
+                        Unlock features
                       </div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -506,7 +509,7 @@ export default function BottomNavbar() {
                 </Link>
               </motion.div>
 
-              {/* Trading Bots */}
+              {/* Tutorials */}
               <motion.div
                 variants={itemVariants}
                 custom={2}
@@ -515,15 +518,15 @@ export default function BottomNavbar() {
                 exit="exit"
                 className="w-56 max-w-[86vw]"
               >
-                <Link to="/trading-bots" onClick={() => setRightOpen(false)}>
+                <Link to="/tutorials" onClick={() => setRightOpen(false)}>
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[var(--color-navbar)] shadow-lg border border-gray-100 dark:border-gray-800">
-                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-green-100 to-green-300">
-                      <Activity className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-lg grid place-items-center bg-gradient-to-tr from-yellow-100 to-yellow-300">
+                      <BookOpen className="w-5 h-5" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="font-medium">Trading Bots</div>
+                      <div className="font-medium">Tutorials</div>
                       <div className="text-xs text-gray-400">
-                        Automated strategies
+                        Learn & explore
                       </div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-400" />
