@@ -171,7 +171,7 @@ export default function RegisterPage() {
   }
 
   async function registerWithToken(payload) {
-    const base = "http://127.0.0.1:8001"; // Laravel backend
+    const base = "http://127.0.0.1:8000"; // Laravel backend
 
     const res = await fetch(`${base}/api/register`, {
       method: "POST",

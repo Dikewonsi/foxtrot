@@ -35,7 +35,7 @@ export default function HomePage() {
       {/* Left sidebar preserved */}
       <Sidebar />
 
-      <main className="flex-1 mx-auto max-w-5xl px-4 md:px-8 py-6">
+      <main className="flex-1 mx-auto max-w-7xl px-4 md:px-8 py-6">
         {/* top bar */}
         <div className="top-4 z-40">
           <motion.div

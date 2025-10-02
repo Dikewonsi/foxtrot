@@ -36,7 +36,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://127.0.0.1:8001/api/login", {
+      const res = await fetch("http://127.0.0.1:8000/api/login", {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -50,7 +50,7 @@ export default function LoginPage() {
 
       if (res.ok) {
         const data = await res.json();
-        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
         toast.success(`Welcome back, ${data.user.f_name}! 🎉`);

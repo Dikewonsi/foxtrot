@@ -1,3 +1,4 @@
+// src/routes/AppRoutes.jsx
 import { Routes, Route } from "react-router-dom";
 import Layout from "../Layout";
 import Home from "../pages/Home";
@@ -10,24 +11,98 @@ import AccountPage from "../pages/Account";
 import LoginPage from "../pages/Login";
 import CopyTradingPage from "../pages/CopyTrading";
 import StockPage from "../pages/Stocks";
-import RegisterPage from "../pages/Register"
+import RegisterPage from "../pages/Register";
 import NotificationsPage from "../pages/Notifications";
+import PrivateRoute from "../components/PrivateRoute";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Layout> <Home /> </Layout>} />     
-      <Route path="/market" element={<Layout> <Market/> </Layout>} />
-      <Route path="/chart" element={<Layout><Chart /></Layout>} />
-      <Route path="/message" element={<Layout><Messages/></Layout>} />
-      <Route path="/deposit" element={<Layout><DepositPage/></Layout>} />
-      <Route path="/withdraw" element={<Layout><WithdrawPage/></Layout>} />
-      <Route path="/account" element={<Layout> <AccountPage/> </Layout>} />
-      <Route path="/login" element={<Layout> <LoginPage/> </Layout>} />
-      <Route path="/register" element={<Layout> <RegisterPage/> </Layout>} />
-      <Route path="/notifications" element={<Layout> <NotificationsPage/> </Layout>} />
-      <Route path="/copy-trading" element={<Layout> <CopyTradingPage/> </Layout>} />
-      <Route path="/stock" element={<Layout> <StockPage/> </Layout>} />
+      {/* Public routes */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+
+      {/* Protected routes */}
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Layout><Home /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/market"
+        element={
+          <PrivateRoute>
+            <Layout><Market /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/chart"
+        element={
+          <PrivateRoute>
+            <Layout><Chart /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/message"
+        element={
+          <PrivateRoute>
+            <Layout><Messages /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/deposit"
+        element={
+          <PrivateRoute>
+            <Layout><DepositPage /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/withdraw"
+        element={
+          <PrivateRoute>
+            <Layout><WithdrawPage /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/account"
+        element={
+          <PrivateRoute>
+            <Layout><AccountPage /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/notifications"
+        element={
+          <PrivateRoute>
+            <Layout><NotificationsPage /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/copy-trading"
+        element={
+          <PrivateRoute>
+            <Layout><CopyTradingPage /></Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/stock"
+        element={
+          <PrivateRoute>
+            <Layout><StockPage /></Layout>
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }
