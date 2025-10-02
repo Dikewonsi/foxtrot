@@ -17,6 +17,7 @@ import {
   Wallet,
   ArrowUpCircle,
   BookOpen,
+  GaugeCircle,
 } from "lucide-react";
 
 /**
@@ -331,7 +332,7 @@ export default function BottomNavbar() {
           title="Activities"
         >
           <motion.div whileTap={{ scale: 0.94 }} whileHover={{ rotate: -6 }}>
-            <CreditCard className="w-5 h-5 text-[var(--color-secondary)]" />
+            {navBtn(<GaugeCircle className="w-5 h-5 mt-2" />, "activity", currentPath === '/account-trading' || currentPath === '/withdraw' || currentPath === '/history')}
           </motion.div>
         </button>
 
@@ -443,7 +444,7 @@ export default function BottomNavbar() {
         >
           <motion.div whileTap={{ scale: 0.94 }} whileHover={{ rotate: 6 }}>
             {/* Three-dot "More" icon instead of User */}
-            <MoreHorizontal className="w-5 h-5 text-[var(--color-secondary)]" />
+            {navBtn(<MoreHorizontal className="w-5 h-5 mt-2"/>, 'More', currentPath === '/deposit' || currentPath === '/upgrade' || currentPath === '/tutorials')}
           </motion.div>
         </button>
 
